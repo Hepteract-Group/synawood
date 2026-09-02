@@ -157,3 +157,18 @@ it('does not copy gitignored env files into the snapshot (#906)', () => {
   expect(existsSync(join(dest, '.env.example'))).toBe(true)
   expect(existsSync(join(dest, 'keep.md'))).toBe(true)
 })
+
+it('strips product names from env example templates (#906)', () => {
+  const src = tmp()
+  writeFileSync(
+    join(src, '.env.example'),
+    '# Synawood local names. WAITLIST_MAIL_FROM=Synawood <hello@example.com>\n',
+  )
+  const dest = join(tmp(), 'out')
+  const result = buildPublicTree({ src, dest })
+  const text = readFileSync(join(dest, '.env.example'), 'utf8')
+  expect(text).not.toMatch(/Synawood/i)
+  expect(text).not.toMatch(/demoreader/i)
+  expect(text).toMatch(/Synawood/)
+  expect(result.leaks).toEqual([])
+})

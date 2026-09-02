@@ -97,8 +97,11 @@ const stripText = (text: string): string => {
   return next
 }
 
-const isProbablyText = (file: string) =>
-  /\.(md|mdx|txt|ts|tsx|js|mjs|cjs|json|yml|yaml|css|html|sql|toml|svg)$/i.test(file)
+const isProbablyText = (file: string) => {
+  const base = file.split(/[/\\]/).pop() ?? ''
+  if (base.endsWith('.example')) return true
+  return /\.(md|mdx|txt|ts|tsx|js|mjs|cjs|json|yml|yaml|css|html|sql|toml|svg)$/i.test(file)
+}
 
 /** Public rewrites live in private `docs/oss/`. Overlay onto dest `docs/` (#1381). */
 const overlayOssDocs = (srcRoot: string, dest: string) => {
