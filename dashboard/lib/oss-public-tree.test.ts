@@ -34,9 +34,13 @@ describe('oss public tree (#904)', () => {
         'core/runbooks/postiz-hosting.md',
         'core/runbooks/weekly-founder-content-batch.md',
         'docs/oss',
+        'docs/opensource',
         'docs/adr/0094-hosted-studio-workers-on-fly.md',
         'docs/architecture/studio-workers.md',
         'docs/architecture/vercel-deploy.md',
+        'dashboard/lib/docs-platform-identity.test.ts',
+        'dashboard/lib/oss-license-files.test.ts',
+        'dashboard/lib/oss-path-a-adr.test.ts',
       ]),
     )
   })
@@ -126,6 +130,33 @@ describe('oss public overlay (#1381)', () => {
     expect(readFileSync(join(dest, 'AGENTS.md'), 'utf8')).toMatch(/Public Apache core/)
     expect(readFileSync(join(dest, 'docs/system-design/overview.md'), 'utf8')).toMatch(/self-host/)
     expect(readFileSync(join(dest, 'docs/system-design/overview.md'), 'utf8')).not.toMatch(/the private example/)
+    expect(result.leaks).toEqual([])
+  })
+
+  it('overlays a public root README over the in-house copy (#1390)', () => {
+    const src = tmp()
+    const operatingSlug = ['synawood', '-os'].join('')
+    writeFileSync(join(src, 'README.md'), 'An in-house, systemized go-to-market engine.\n')
+    writeFileSync(
+      join(src, 'CONTRIBUTING.md'),
+      `File issues on Hepteract-Group/${operatingSlug}.\n`,
+    )
+    mkdirSync(join(src, 'docs/oss'), { recursive: true })
+    writeFileSync(join(src, 'docs/oss/README.md'), 'Type a brief. Play the ad.\n')
+    writeFileSync(
+      join(src, 'docs/oss/CONTRIBUTING.md'),
+      'Pull requests on this repository are welcome.\n',
+    )
+    writeFileSync(join(src, 'docs/oss/docs-README.md'), 'Start at the root README.\n')
+
+    const dest = join(tmp(), 'out')
+    const result = buildPublicTree({ src, dest })
+
+    expect(readFileSync(join(dest, 'README.md'), 'utf8')).toMatch(/Type a brief/)
+    expect(readFileSync(join(dest, 'README.md'), 'utf8')).not.toMatch(/in-house/)
+    expect(readFileSync(join(dest, 'CONTRIBUTING.md'), 'utf8')).toMatch(/Pull requests/)
+    expect(readFileSync(join(dest, 'CONTRIBUTING.md'), 'utf8')).not.toMatch(operatingSlug)
+    expect(readFileSync(join(dest, 'docs/README.md'), 'utf8')).toMatch(/root README/)
     expect(result.leaks).toEqual([])
   })
 })

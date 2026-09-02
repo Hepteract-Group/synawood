@@ -1,16 +1,13 @@
 # Contributing
 
-The **source of truth** is the private repo
-[`Hepteract-Group/synawood-os`](https://github.com/Hepteract-Group/synawood-os)
-(formerly `marketing-os`).
+This repository is the Apache-2.0 core of Synawood.
 
-Until we open a Path B public contribution track:
+1. Open an issue describing the change.
+2. Fork, or branch from `main` as `fix|feat|chore|docs/<issue>-<slug>`.
+3. Keep the diff small. Functional TypeScript only.
+4. Run `npm run test`, `npm run typecheck`, and `npm run format` (if Prettier is set up) before you open a pull request.
+5. Do not commit `.env` files, API keys, or production URLs.
 
-- File issues and pull requests on the **private** repo.
-- The public GitHub repo (when it exists) is a **read-mostly mirror** of
-  the Apache-2.0 core. Do not expect PRs there to be reviewed.
-- `products/demo/` is the fixture kit. Marketed customer packs never ship
-  in the public tree and are not Apache-licensed.
+`products/demo/` is a fixture kit. Do not add a marketed customer pack to git.
 
-If you are a Hepteract operator: follow `AGENTS.md` (issue first, then
-branch `fix|feat|chore|docs/<n>-<slug>`).
+Public CI is build and test only. Do not point Actions at someone else’s Vercel team or production database.

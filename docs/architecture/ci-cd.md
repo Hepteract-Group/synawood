@@ -72,7 +72,7 @@ Trigger: merge to `main`.
 
 ### Chosen model: Vercel Git integration (auto Production; Preview opt-in)
 
-- Vercel is connected to `Hepteract-Group/synawood-os` (scope `hosted-vercel-team`; formerly `marketing-os`).
+- Vercel is connected to `Hepteract-Group/synawood` (scope `hosted-vercel-team`; formerly `marketing-os`).
 - **Push/merge to `main` → automatic Production deploy.**
 - **PR/branch pushes do not auto-build.** Preview is **manual** when the founder wants a shareable URL ([ADR-0017](../adr/0017-vercel-main-only.md), [vercel-deploy.md](./vercel-deploy.md)).
 - PR review stays **localhost + MR checks** by default.

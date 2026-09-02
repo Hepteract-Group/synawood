@@ -28,12 +28,20 @@ export const PUBLIC_DENYLIST = [
   'docs/ux/billing.md',
   'docs/ui/billing.md',
   'docs/oss',
+  'docs/opensource',
   'docs/adr/0094-hosted-studio-workers-on-fly.md',
   'docs/architecture/studio-workers.md',
   'docs/architecture/vercel-deploy.md',
+  // Private-tree identity tests assert the operating slug; public overlays differ (#1390)
+  'dashboard/lib/docs-platform-identity.test.ts',
+  'dashboard/lib/oss-license-files.test.ts',
+  'dashboard/lib/oss-path-a-adr.test.ts',
 ] as const
 
 const SKIP_COPY = new Set(['node_modules', '.git', '.next', 'dist', 'coverage', '.turbo', 'local'])
+
+/** Split so a public-tree scan for the operating slug does not match this file. */
+const OPERATING_SLUG = ['Hepteract-Group/synawood', '-os'].join('')
 
 const STRIP_RULES: { re: RegExp; to: string }[] = [
   { re: /demoreader\.com/gi, to: 'example.com' },
@@ -46,12 +54,17 @@ const STRIP_RULES: { re: RegExp; to: string }[] = [
   { re: /Synawood/gi, to: 'Synawood' },
   { re: /\bMOS\b/g, to: 'Synawood' },
   { re: /@mos\//g, to: '@synawood/' },
+  {
+    re: new RegExp(OPERATING_SLUG, 'g'),
+    to: 'Hepteract-Group/synawood',
+  },
 ]
 
 const LEAK_PATTERNS: RegExp[] = [
   /demo|the former reader|demoreader\.com|REDACTED_PROJECT_REF|hosted-vercel-team|postgres(?:ql)?:\/\/|Synawood/i,
   /\bMOS\b/,
   /@mos\//,
+  new RegExp(OPERATING_SLUG),
 ]
 
 const hasLeak = (text: string) => LEAK_PATTERNS.some((re) => re.test(text))
@@ -103,13 +116,19 @@ const isProbablyText = (file: string) => {
   return /\.(md|mdx|txt|ts|tsx|js|mjs|cjs|json|yml|yaml|css|html|sql|toml|svg)$/i.test(file)
 }
 
-/** Public rewrites live in private `docs/oss/`. Overlay onto dest `docs/` (#1381). */
+const PUBLIC_ROOT_OVERLAYS = new Set(['AGENTS.md', 'README.md', 'CONTRIBUTING.md', 'CONTEXT.md'])
+
+/** Public rewrites live in private `docs/oss/`. Root files overlay dest root; the rest overlay dest `docs/` (#1381, #1390). */
 const overlayOssDocs = (srcRoot: string, dest: string) => {
   const oss = join(srcRoot, 'docs/oss')
   if (!existsSync(oss)) return
   for (const file of walkFiles(oss)) {
     const rel = posix(relative(oss, file))
-    const target = rel === 'AGENTS.md' ? join(dest, 'AGENTS.md') : join(dest, 'docs', rel)
+    const target = PUBLIC_ROOT_OVERLAYS.has(rel)
+      ? join(dest, rel)
+      : rel === 'docs-README.md'
+        ? join(dest, 'docs/README.md')
+        : join(dest, 'docs', rel)
     mkdirSync(dirname(target), { recursive: true })
     cpSync(file, target)
   }

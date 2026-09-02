@@ -17,7 +17,7 @@ docs/           system design, architecture, UX/UI, ADRs
 - If it runs on a schedule without a human in the loop → `automations/`, and only after a Runbook proved the steps.
 - Secrets never in git. Bring your own keys; see [self-host.md](../architecture/self-host.md).
 
-Public clone vs private source of truth: [ADR-0079](../adr/0079-oss-path-a.md).
+This tree is the published Apache core ([ADR-0079](../adr/0079-oss-path-a.md)).
 
 ## SaaS identity
 
