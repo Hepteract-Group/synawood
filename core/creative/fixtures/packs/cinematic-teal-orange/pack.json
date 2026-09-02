@@ -1,0 +1,11 @@
+{
+  "id": "cinematic-teal-orange",
+  "slug": "cinematic-teal-orange",
+  "kind": "style",
+  "semver": "1.0.0",
+  "mosApiVersion": 1,
+  "title": "Cinematic teal-orange",
+  "summary": "Teal shadows and warm orange highlights for cinematic short-form ads.",
+  "entries": ["STYLE.md"],
+  "requiresConfirmSpend": true
+}

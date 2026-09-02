@@ -1,0 +1,12 @@
+{
+  "id": "pulp",
+  "label": "Pulp",
+  "license": "first-party",
+  "contrast": 1.38,
+  "saturate": 1.55,
+  "hueRotate": 8,
+  "sepia": 0.12,
+  "vignette": 0.36,
+  "promptHints": ["high contrast pulp", "inked reds", "print still"],
+  "musicHints": ["brass sting", "drum hit"]
+}

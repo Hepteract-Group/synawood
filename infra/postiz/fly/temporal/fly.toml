@@ -1,0 +1,38 @@
+# Temporal server (Fly) — Postiz reaches this via 6PN IPv6 on gRPC 7233.
+# Postgres: Fly MPG *direct* host (not pgbouncer) — Temporal uses prepared statements.
+app = 'mos-postiz-temporal'
+primary_region = 'lhr'
+
+[build]
+  image = 'temporalio/auto-setup:1.28.1'
+
+[env]
+  DB = 'postgres12'
+  DB_PORT = '5432'
+  ENABLE_ES = 'false'
+  ES_VERSION = 'v7'
+  TEMPORAL_NAMESPACE = 'default'
+  SKIP_DB_CREATE = 'true'
+  SKIP_ADD_CUSTOM_SEARCH_ATTRIBUTES = 'true'
+  BIND_ON_IP = '::0'
+  POSTGRES_TLS_ENABLED = 'true'
+  POSTGRES_TLS_DISABLE_HOST_VERIFICATION = 'true'
+  # MPG direct host (not pgbouncer.*) — Temporal uses prepared statements.
+  POSTGRES_SEEDS = 'direct.z23750vm1g5096d1.flympg.net'
+
+# Raw TCP. Fly 6PN is IPv6; BIND_ON_IP=:: is required or Postiz gets ECONNREFUSED.
+[[services]]
+  protocol = 'tcp'
+  internal_port = 7233
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+  [[services.ports]]
+    port = 7233
+
+[[vm]]
+  size = 'shared-cpu-2x'
+  memory = '1gb'
+  processes = ['app']

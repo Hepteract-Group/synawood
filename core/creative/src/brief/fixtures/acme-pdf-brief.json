@@ -1,0 +1,30 @@
+{
+  "id": "22222222-2222-4222-8222-222222222222",
+  "source": {
+    "kind": "pdf",
+    "blobKey": "local/demo/briefs/one-pager.pdf",
+    "fetchedAt": "2026-08-02T13:00:00.000Z",
+    "title": "Acme one-pager"
+  },
+  "brandCandidates": {
+    "displayName": "Acme",
+    "primaryColor": "#2563EB",
+    "defaultCta": "Book a demo",
+    "stillAssetIds": []
+  },
+  "product": {
+    "name": "Acme",
+    "oneLiner": "Sample product without the bloat.",
+    "benefits": ["Fast open", "Clean UI"],
+    "socialProof": []
+  },
+  "messaging": {
+    "hookCandidates": ["Your cut, finally usable"],
+    "ctaCandidates": ["Book a demo", "Try free"],
+    "audienceHints": ["ops teams"],
+    "tone": "calm"
+  },
+  "confidence": {
+    "overall": 0.55
+  }
+}

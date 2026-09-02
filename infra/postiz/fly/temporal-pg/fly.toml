@@ -1,0 +1,29 @@
+# Temporal Postgres (Fly, internal only) — small dedicated Postgres for Temporal metadata.
+app = 'mos-postiz-temporal-pg'
+primary_region = 'lhr'
+
+[build]
+  image = 'postgres:16'
+
+[env]
+  POSTGRES_USER = 'temporal'
+  POSTGRES_PASSWORD = 'temporal'
+  POSTGRES_DB = 'temporal'
+  PGDATA = '/var/lib/postgresql/data/pgdata'
+
+[[mounts]]
+  source = 'temporal_pg_data'
+  destination = '/var/lib/postgresql/data'
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 5432
+  processes = ['app']
+
+  [[services.ports]]
+    port = 5432
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '512mb'
+  processes = ['app']

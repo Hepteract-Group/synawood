@@ -1,0 +1,12 @@
+{
+  "id": "hooks-first-3s",
+  "slug": "hooks-first-3s",
+  "kind": "skill",
+  "semver": "1.0.0",
+  "mosApiVersion": 1,
+  "title": "Hooks first 3s",
+  "summary": "Earn attention in the first three seconds of ≤60s video.",
+  "entries": ["SKILL.md"],
+  "hintedTools": ["set_hook_title", "render_export"],
+  "requiresConfirmSpend": true
+}

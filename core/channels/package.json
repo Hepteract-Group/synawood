@@ -1,0 +1,35 @@
+{
+  "name": "@synawood/channels",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./publish-port": "./src/publish-port.ts",
+    "./manual-publish": "./src/manual-publish.ts",
+    "./postiz-publish": "./src/postiz-publish.ts",
+    "./postiz-poll-worker": "./src/postiz-poll-worker.ts",
+    "./postiz-webhook": "./src/postiz-webhook.ts",
+    "./organic-postiz-channel": "./src/organic-postiz-channel.ts",
+    "./postiz-channel-bind": "./src/postiz-channel-bind.ts",
+    "./postiz-settings-type": "./src/postiz-settings-type.ts",
+    "./postiz-upload": "./src/postiz-upload.ts",
+    "./postiz-mock-http": "./src/postiz-mock-http.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "mood": "Calm operator chrome. Short cuts, real type, no fake product UI.",
+  "do": [
+    "Use the kit logo and placeholder still as provided",
+    "Prefer talking-head plus Path C chrome over invented UI",
+    "Keep the CTA concrete: Try the demo"
+  ],
+  "dont": [
+    "Invent logos or product screens",
+    "Promise features this stub does not have",
+    "Use purple-on-white AI-default aesthetics"
+  ],
+  "forbiddenClaims": [
+    "Guaranteed results",
+    "World's best editor",
+    "Works offline with no caveats"
+  ]
+}

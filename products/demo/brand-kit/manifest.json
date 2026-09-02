@@ -1,0 +1,17 @@
+{
+  "productId": "demo",
+  "displayName": "Demo",
+  "defaultCta": "Try the demo",
+  "defaultEndCardUrl": "example.com",
+  "logo": {
+    "primary": "logo/primary.svg"
+  },
+  "stills": [
+    "stills/placeholder.svg"
+  ],
+  "fonts": {
+    "display": "system-ui, sans-serif",
+    "body": "system-ui, sans-serif"
+  },
+  "source": "Local stub kit for Studio boot (not a marketed brand)"
+}

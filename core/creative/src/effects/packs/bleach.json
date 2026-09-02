@@ -1,0 +1,12 @@
+{
+  "id": "bleach",
+  "label": "Bleach",
+  "license": "first-party",
+  "contrast": 1.42,
+  "saturate": 0.35,
+  "hueRotate": 0,
+  "sepia": 0.08,
+  "vignette": 0.14,
+  "promptHints": ["bleached highlights", "hard daylight", "sparse color"],
+  "musicHints": ["dry percussion", "thin synth"]
+}

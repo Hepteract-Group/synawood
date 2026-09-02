@@ -1,0 +1,12 @@
+{
+  "id": "night",
+  "label": "Night",
+  "license": "first-party",
+  "contrast": 1.32,
+  "saturate": 0.9,
+  "hueRotate": -28,
+  "sepia": 0.06,
+  "vignette": 0.62,
+  "promptHints": ["night interior", "deep shadows", "cool practicals"],
+  "musicHints": ["low bass", "night bed"]
+}

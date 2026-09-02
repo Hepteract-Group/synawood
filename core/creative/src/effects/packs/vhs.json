@@ -1,0 +1,12 @@
+{
+  "id": "vhs",
+  "label": "VHS",
+  "license": "first-party",
+  "contrast": 1.28,
+  "saturate": 1.45,
+  "hueRotate": 4,
+  "sepia": 0.34,
+  "vignette": 0.55,
+  "promptHints": ["VHS camcorder", "tape grain", "slight tracking warp"],
+  "musicHints": ["lo-fi tape", "80s synth bed", "wow and flutter"]
+}

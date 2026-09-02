@@ -1,0 +1,19 @@
+# Redis for Postiz (Fly, internal only)
+app = 'mos-postiz-redis'
+primary_region = 'lhr'
+
+[build]
+  image = 'redis:7.2'
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 6379
+  processes = ['app']
+
+  [[services.ports]]
+    port = 6379
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '256mb'
+  processes = ['app']

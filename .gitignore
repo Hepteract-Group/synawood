@@ -1,0 +1,50 @@
+node_modules/
+.env
+.env.*
+!.env.example
+!.env.production.example
+!.env.fly.example
+.vercel
+.DS_Store
+dist/
+dashboard/.next/
+dashboard/public/authored-player.html
+dashboard/public/authored-player.js
+coverage/
+coverage-full/
+*.log
+.supabase/
+supabase/.branches/
+supabase/.temp/
+*.tsbuildinfo
+
+# Installed agent skills (vendored, huge)
+.agents/skills/impeccable/
+.agents/skills/animation-vocabulary/
+.agents/skills/apple-design/
+.agents/skills/design-taste-frontend/
+.agents/skills/emil-design-eng/
+.agents/skills/find-animation-opportunities/
+.agents/skills/improve-animations/
+.agents/skills/review-animations/
+.cursor/skills/
+.github/skills/
+.github/hooks/
+.codex/hooks.json
+
+# Operator skill-pack overlay (ADR-0036). Hosted cannot write git.
+products/*/priors.local.json
+
+# Secrets
+thought_dumps/client_secret_343588569425-rtss6euekr45qt9vm0j2v314dnsnqvmr.apps.googleusercontent.com.json
+
+# Founder local verify steps (not shipped)
+docs/local-ticket-verify.md
+
+# Postiz local compose secrets (infra/postiz/.env)
+infra/postiz/.env
+!infra/postiz/.env.example
+!infra/postiz/.env.fly.example
+
+# Founder holding notes (not shipped; ADRs live under docs/adr/)
+docs/local/

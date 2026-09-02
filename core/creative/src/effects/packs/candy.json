@@ -1,0 +1,12 @@
+{
+  "id": "candy",
+  "label": "Candy",
+  "license": "first-party",
+  "contrast": 1.14,
+  "saturate": 1.72,
+  "hueRotate": 18,
+  "sepia": 0.05,
+  "vignette": 0.12,
+  "promptHints": ["candy color", "pop still", "bright product"],
+  "musicHints": ["bright pop", "hand claps"]
+}

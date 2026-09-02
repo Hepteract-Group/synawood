@@ -1,0 +1,75 @@
+# Local Synawood stack. Network `synawood` is created by `npm run local:up`
+# (Supabase CLI --network-id). Do not point this file at hosted Vercel/Fly/Supabase.
+
+name: synawood-local
+
+networks:
+  default:
+    name: synawood
+    external: true
+
+services:
+  dashboard:
+    build:
+      context: .
+      dockerfile: infra/studio/Dockerfile.dashboard
+    ports:
+      - '3000:3000'
+    env_file:
+      - path: .env
+        required: false
+      - path: dashboard/.env.local
+        required: false
+    environment:
+      STUDIO_EXTRACT_INLINE: 'false'
+      STUDIO_RENDER_INLINE: 'false'
+      NEXT_PUBLIC_SUPABASE_URL: http://localhost:54341
+      # Server/middleware: container localhost is not Kong (#1387).
+      SUPABASE_URL: http://host.docker.internal:54341
+      POSTIZ_BASE_URL: http://postiz:4007/api/public/v1
+      POSTIZ_ADAPTER: live
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - .:/app
+      # Host node_modules are darwin. Overlay Linux installs from the image (#1384).
+      - dashboard_node_modules:/app/node_modules
+      - dashboard_app_node_modules:/app/dashboard/node_modules
+      - dashboard_creative_node_modules:/app/core/creative/node_modules
+      - dashboard_channels_node_modules:/app/core/channels/node_modules
+      - dashboard_sdk_node_modules:/app/packages/mos-sdk-ts/node_modules
+      - dashboard_next:/app/dashboard/.next
+    depends_on:
+      - workers
+
+  workers:
+    build:
+      context: .
+      dockerfile: infra/studio/Dockerfile.workers
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      SUPABASE_URL: http://host.docker.internal:54341
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - .:/app
+      - workers_node_modules:/app/node_modules
+      - workers_app_node_modules:/app/dashboard/node_modules
+      - workers_creative_node_modules:/app/core/creative/node_modules
+      - workers_channels_node_modules:/app/core/channels/node_modules
+      - workers_sdk_node_modules:/app/packages/mos-sdk-ts/node_modules
+
+volumes:
+  dashboard_node_modules:
+  dashboard_app_node_modules:
+  dashboard_creative_node_modules:
+  dashboard_channels_node_modules:
+  dashboard_sdk_node_modules:
+  dashboard_next:
+  workers_node_modules:
+  workers_app_node_modules:
+  workers_creative_node_modules:
+  workers_channels_node_modules:
+  workers_sdk_node_modules:

@@ -1,0 +1,18 @@
+# Playwright 1.52 matches core/creative dependency.
+FROM mcr.microsoft.com/playwright:v1.52.0-noble
+
+WORKDIR /app
+ENV NODE_ENV=development
+RUN corepack enable && corepack prepare npm@11 --activate || true
+
+COPY package.json package-lock.json ./
+COPY dashboard/package.json dashboard/package.json
+COPY core/creative/package.json core/creative/package.json
+COPY core/channels/package.json core/channels/package.json
+COPY packages/mos-sdk-ts/package.json packages/mos-sdk-ts/package.json
+
+RUN npm ci
+
+COPY . .
+
+CMD ["node", "--import", "tsx", "automations/studio-workers-poll.ts"]

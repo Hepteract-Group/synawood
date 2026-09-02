@@ -1,0 +1,12 @@
+{
+  "id": "luxury-perfume",
+  "label": "Luxury perfume",
+  "license": "first-party",
+  "contrast": 1.08,
+  "saturate": 0.82,
+  "hueRotate": 10,
+  "sepia": 0.18,
+  "vignette": 0.32,
+  "promptHints": ["soft gold highlights", "silk and glass", "editorial perfume still"],
+  "musicHints": ["sparse luxury", "soft piano", "air and hush"]
+}

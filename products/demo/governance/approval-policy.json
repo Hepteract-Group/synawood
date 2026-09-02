@@ -1,0 +1,40 @@
+{
+  "slug": "default",
+  "version": 1,
+  "stages": [
+    {
+      "key": "editor",
+      "label": "Editor review",
+      "minRole": "editor"
+    },
+    {
+      "key": "owner",
+      "label": "Owner sign-off",
+      "minRole": "owner"
+    }
+  ],
+  "claimRules": [
+    {
+      "id": "hipaa",
+      "pattern": "\\bhipaa[\\s-]?compliant\\b",
+      "severity": "block",
+      "suggestion": "Drop compliance claims unless listed in product marketing."
+    },
+    {
+      "id": "guaranteed",
+      "pattern": "\\bguaranteed\\b",
+      "severity": "block",
+      "suggestion": "Replace \"guaranteed\" with a concrete, honest benefit."
+    },
+    {
+      "id": "superlative",
+      "pattern": "#\\s*1\\b|\\bnumber\\s+one\\b|\\bworld'?s\\s+best\\b",
+      "severity": "warn",
+      "suggestion": "Avoid unverified rankings unless proven."
+    }
+  ],
+  "disclaimer": {
+    "required": true,
+    "text": "Demo is a placeholder Product for local Studio \u2014 not legal, medical, or compliance advice."
+  }
+}

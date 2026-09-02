@@ -1,0 +1,16 @@
+{
+  "manifest": {
+    "id": "cinematic-teal-orange",
+    "slug": "cinematic-teal-orange",
+    "kind": "style",
+    "semver": "1.0.0",
+    "mosApiVersion": 1,
+    "title": "Cinematic teal-orange",
+    "summary": "Teal shadows and warm orange highlights for cinematic short-form ads.",
+    "entries": ["STYLE.md"],
+    "requiresConfirmSpend": true
+  },
+  "files": {
+    "STYLE.md": "# Cinematic teal-orange\n\nA restrained cinematic grade for short-form ads and product cuts.\n\n## Look\n\n- Shadows lean teal; highlights lean warm orange.\n- Prefer restrained saturation; avoid neon glow.\n- Keep skin tones natural; push color in backgrounds and product surfaces first.\n\n## Pairing\n\n- Works well with Hooks first 3s for ≤60s ad cuts.\n- Use when the Brief asks for premium or filmic mood without heavy VFX.\n"
+  }
+}

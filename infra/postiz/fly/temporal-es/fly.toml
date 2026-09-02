@@ -1,0 +1,30 @@
+# Elasticsearch for Temporal (Fly, internal only)
+app = 'mos-postiz-temporal-es'
+primary_region = 'lhr'
+
+[build]
+  image = 'elasticsearch:7.17.27'
+
+[env]
+  discovery.type = 'single-node'
+  ES_JAVA_OPTS = '-Xms256m -Xmx256m'
+  xpack.security.enabled = 'false'
+  network.host = '0.0.0.0'
+  http.host = '0.0.0.0'
+  cluster.routing.allocation.disk.threshold_enabled = 'true'
+  cluster.routing.allocation.disk.watermark.low = '512mb'
+  cluster.routing.allocation.disk.watermark.high = '256mb'
+  cluster.routing.allocation.disk.watermark.flood_stage = '128mb'
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 9200
+  processes = ['app']
+
+  [[services.ports]]
+    port = 9200
+
+[[vm]]
+  size = 'shared-cpu-2x'
+  memory = '2gb'
+  processes = ['app']

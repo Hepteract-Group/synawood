@@ -1,0 +1,11 @@
+{
+  "structure": {
+    "requireBeats": false,
+    "requireCta": false,
+    "requireOffer": false,
+    "preferredBeatCount": 4
+  },
+  "hooks": {
+    "maxSeconds": 3
+  }
+}

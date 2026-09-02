@@ -1,0 +1,22 @@
+{
+  "productId": "demo",
+  "tagline": "Ship a cut. Skip the editor hire.",
+  "values": [
+    "Honest placeholder",
+    "Boots without a private example Product",
+    "Replace this kit when you onboard a real brand"
+  ],
+  "icp": "Operators trying Synawood locally before they attach a real Product.",
+  "offer": "A stub Brand kit and approval policy so Studio opens on an empty timeline.",
+  "proofPoints": [
+    "Kit files live in-repo under products/demo/brand-kit/",
+    "No marketed-product claims"
+  ],
+  "business": {
+    "legalName": "Demo",
+    "category": "Placeholder Product",
+    "url": "https://example.com",
+    "locale": "en"
+  },
+  "lockedFields": []
+}

@@ -1,0 +1,46 @@
+{
+  "name": "dashboard",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build:authored-player": "node --import tsx scripts/build-authored-player.mjs",
+    "dev": "npm run build:authored-player && next dev --turbopack",
+    "dev:webpack": "npm run build:authored-player && next dev",
+    "dev:health": "node --import tsx scripts/dev-health.ts",
+    "build": "npm run build:authored-player && next build",
+    "start": "next start",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^4.0.16",
+    "@remotion/lottie": "^4.0.490",
+    "@remotion/player": "^4.0.490",
+    "@remotion/shapes": "^4.0.490",
+    "@remotion/three": "^4.0.490",
+    "@remotion/transitions": "^4.0.490",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.50.0",
+    "@synawood/channels": "*",
+    "@synawood/creative": "*",
+    "ai": "^7.0.31",
+    "lottie-web": "^5.13.0",
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "remotion": "^4.0.490",
+    "three": "^0.160.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "esbuild": "^0.25.12",
+    "eslint": "^9.28.0",
+    "eslint-config-next": "^15.3.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}

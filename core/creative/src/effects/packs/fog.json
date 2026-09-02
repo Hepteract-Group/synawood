@@ -1,0 +1,12 @@
+{
+  "id": "fog",
+  "label": "Fog",
+  "license": "first-party",
+  "contrast": 0.82,
+  "saturate": 0.7,
+  "hueRotate": -8,
+  "sepia": 0.1,
+  "vignette": 0.48,
+  "promptHints": ["soft fog", "lifted blacks", "haze still"],
+  "musicHints": ["pads", "slow air"]
+}

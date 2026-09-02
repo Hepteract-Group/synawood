@@ -1,0 +1,12 @@
+{
+  "id": "paper",
+  "label": "Paper",
+  "license": "first-party",
+  "contrast": 0.92,
+  "saturate": 0.55,
+  "hueRotate": 6,
+  "sepia": 0.42,
+  "vignette": 0.18,
+  "promptHints": ["paper print", "soft grain", "muted still"],
+  "musicHints": ["quiet keys", "page turn"]
+}

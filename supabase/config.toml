@@ -1,0 +1,72 @@
+# Synawood Supabase local defaults.
+# Use a dedicated Synawood project — never the private example (REDACTED_PROJECT_REF).
+# Ports are shifted to the 5434x range so this stack can run alongside other
+# local Supabase projects that use the default 5432x range.
+
+project_id = "marketing-os"
+
+[api]
+enabled = true
+port = 54341
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54342
+shadow_port = 54340
+major_version = 15
+
+[db.pooler]
+enabled = false
+port = 54345
+
+[studio]
+enabled = true
+port = 54343
+api_url = "http://127.0.0.1:54341"
+
+[inbucket]
+enabled = true
+port = 54344
+
+[auth]
+enabled = true
+# Prefer localhost — matches `next dev` default. Mixing with 127.0.0.1 drops PKCE cookies.
+# Prefer localhost — matches `next dev` default. Mixing with 127.0.0.1 drops PKCE cookies.
+# When :3000 is taken, use `npm run dev:review` (:3011) — also listed below.
+site_url = "http://localhost:3000"
+# App callback after provider returns (see docs/architecture/product-auth.md).
+additional_redirect_urls = [
+  "http://localhost:3000",
+  "http://localhost:3000/auth/callback",
+  "http://localhost:3000/**",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:3000/auth/callback",
+  "http://127.0.0.1:3000/**",
+  "http://localhost:3011",
+  "http://localhost:3011/auth/callback",
+  "http://localhost:3011/**",
+  "http://127.0.0.1:3011",
+  "http://127.0.0.1:3011/auth/callback",
+  "http://127.0.0.1:3011/**",
+]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+enable_confirmations = false
+
+# Google OAuth. Requires GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET in supabase/.env
+# (gitignored). Set enabled = false for email/password-only smoke.
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_CLIENT_SECRET)"
+redirect_uri = ""
+skip_nonce_check = false
+
+[analytics]
+enabled = true
+port = 54347

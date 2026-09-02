@@ -1,0 +1,12 @@
+{
+  "id": "cinematic-teal-orange",
+  "label": "Cinematic teal-orange",
+  "license": "first-party",
+  "contrast": 1.16,
+  "saturate": 1.22,
+  "hueRotate": -14,
+  "sepia": 0.08,
+  "vignette": 0.42,
+  "promptHints": ["teal and orange grade", "cinematic contrast", "film still lighting"],
+  "musicHints": ["cinematic underscore", "warm analog pads"]
+}

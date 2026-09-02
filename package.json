@@ -1,0 +1,49 @@
+{
+  "name": "marketing-os",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hepteract-Group/synawood-os.git"
+  },
+  "workspaces": [
+    "dashboard",
+    "core/creative",
+    "core/channels",
+    "packages/mos-sdk-ts"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w dashboard",
+    "dev:health": "npm run dev:health -w dashboard",
+    "db:migrate": "npx supabase db push --local",
+    "dev:review": "npm run dev -w dashboard -- -p 3011 -H 127.0.0.1",
+    "build": "npm run build -w dashboard",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write \"dashboard/**/*.{ts,tsx,js,mjs,css,json}\" \"core/creative/**/*.{ts,tsx,js,json}\" \"core/channels/**/*.{ts,tsx,js,json}\" \"packages/mos-sdk-ts/**/*.{ts,tsx,js,json}\" \"package.json\" \"tsconfig.base.json\" \".prettierrc.json\" \".github/workflows/*.yml\"",
+    "format:check": "prettier --check \"dashboard/**/*.{ts,tsx,js,mjs,css,json}\" \"core/creative/**/*.{ts,tsx,js,json}\" \"core/channels/**/*.{ts,tsx,js,json}\" \"packages/mos-sdk-ts/**/*.{ts,tsx,js,json}\" \"package.json\" \"tsconfig.base.json\" \".prettierrc.json\" \".github/workflows/*.yml\"",
+    "test": "npm run test --workspaces --if-present",
+    "test:ad-generator:coverage": "npm run test:ad-generator:coverage -w @synawood/creative",
+    "test:coverage:full": "npm run test:coverage:daily -w @synawood/creative",
+    "smoke": "node --import tsx scripts/smoke.ts",
+    "oss:public-tree": "node --import tsx scripts/oss-public-tree.ts --check",
+    "oss:snapshot": "node --import tsx scripts/oss-snapshot.ts",
+    "smoke:blob": "npm run smoke:blob -w @synawood/creative",
+    "mos-marketplace": "node --import tsx scripts/mos-marketplace.ts",
+    "seed:starter-packs": "node --env-file-if-exists=.env --import tsx scripts/seed-starter-packs.ts",
+    "render:local": "node --env-file-if-exists=.env --import tsx automations/creative-render.ts",
+    "cut-review:local": "node --env-file-if-exists=.env --import tsx automations/creative-cut-review.ts",
+    "extract:local": "node --env-file-if-exists=.env --import tsx automations/creative-extract.ts",
+    "webhooks:local": "node --env-file-if-exists=.env --import tsx automations/webhook-deliveries.ts",
+    "local:up": "node --import tsx scripts/local-up.ts",
+    "local:down": "node --import tsx scripts/local-down.ts"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "tsx": "^4.23.1",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+}

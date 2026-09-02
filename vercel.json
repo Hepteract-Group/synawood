@@ -1,0 +1,15 @@
+{
+  "framework": "nextjs",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build -w dashboard",
+  "crons": [
+    {
+      "path": "/api/cron/performance-pull",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/postiz-poll",
+      "schedule": "*/15 * * * *"
+    }
+  ]
+}

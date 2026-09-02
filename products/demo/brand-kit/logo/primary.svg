@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-label="Demo">
+  <rect width="160" height="48" rx="10" fill="#0F172A"/>
+  <rect x="8" y="8" width="32" height="32" rx="8" fill="#2563EB"/>
+  <text x="24" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#F8FAFC">D</text>
+  <text x="52" y="31" font-family="system-ui, sans-serif" font-size="20" font-weight="650" fill="#F8FAFC">Demo</text>
+</svg>

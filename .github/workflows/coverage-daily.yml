@@ -1,0 +1,31 @@
+name: coverage-daily
+
+# Full @synawood/creative coverage report once a day (#160).
+# PR gate stays on the fast Ad Generator suite in mr-checks.yml.
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # 06:00 UTC daily
+  workflow_dispatch:
+
+jobs:
+  creative-coverage:
+    runs-on: ubuntu-latest
+    env:
+      MODEL_PROFILE: founder-edit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Full creative coverage report (no fail gate)
+        run: npm run test:coverage:daily -w @synawood/creative
+      - name: Upload HTML + LCOV report
+        uses: actions/upload-artifact@v4
+        with:
+          name: creative-coverage-full
+          path: |
+            core/creative/coverage-full/
+          retention-days: 30

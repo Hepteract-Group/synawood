@@ -1,0 +1,14 @@
+{
+  "primary": "#2563EB",
+  "primaryMuted": "#3B82F6",
+  "ink": "#0F172A",
+  "paper": "#F8FAFC",
+  "accent": "#F59E0B",
+  "captionBg": "rgba(15, 23, 42, 0.78)",
+  "promptTokens": [
+    "slate",
+    "clear type",
+    "operator chrome",
+    "calm blue"
+  ]
+}

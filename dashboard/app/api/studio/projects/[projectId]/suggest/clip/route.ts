@@ -1,0 +1,47 @@
+import { loadProject } from '@synawood/creative/project'
+import { handleRouteError, jsonError, requireStudioAccess } from '@/lib/studio-server'
+import {
+  jsonFromToolOutcome,
+  mapStudioRouteError,
+  runStudioProjectTool,
+} from '@/lib/studio-tool-route'
+import { z } from 'zod'
+
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
+const bodySchema = z
+  .object({
+    clipId: z.string().min(1),
+    max: z.number().int().positive().max(12).optional(),
+    refresh: z.boolean().optional(),
+  })
+  .strict()
+
+/** POST — suggest_for_clip (read-only; heuristic + optional reasoner). */
+export const POST = async (
+  request: Request,
+  context: { params: Promise<{ projectId: string }> },
+) => {
+  try {
+    const { projectId } = await context.params
+    const body = bodySchema.parse(await request.json())
+    const access = await requireStudioAccess({ projectId, minRole: 'editor' })
+    const { project } = await loadProject(access.supabase, projectId)
+    const { outcome, traceWarning } = await runStudioProjectTool(
+      access,
+      projectId,
+      project.revision,
+      'suggest_for_clip',
+      body,
+    )
+    return jsonFromToolOutcome(outcome, { revision: project.revision, traceWarning })
+  } catch (error) {
+    return handleRouteError(error, 'Failed to load clip suggestions', (err) => {
+      if (err instanceof z.ZodError) {
+        return jsonError(err.issues.map((issue) => issue.message).join('; '), 400)
+      }
+      return mapStudioRouteError(err)
+    })
+  }
+}

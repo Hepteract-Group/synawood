@@ -1,0 +1,26 @@
+# Keep Docker build context small. Without this, `docker compose build`
+# copies node_modules / .next (multi-GB) into the daemon and fills the VM
+# even when the Mac still has free disk.
+
+.git
+**/.git
+node_modules
+**/node_modules
+dashboard/.next
+**/.next
+coverage
+coverage-full
+dist
+.turbo
+.supabase
+docs/local
+local
+.cursor
+.agents
+*.log
+.env
+.env.*
+!.env.example
+!.env.production.example
+!.env.fly.example
+**/.DS_Store

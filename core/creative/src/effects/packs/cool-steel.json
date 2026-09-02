@@ -1,0 +1,12 @@
+{
+  "id": "cool-steel",
+  "label": "Cool steel",
+  "license": "first-party",
+  "contrast": 1.18,
+  "saturate": 0.72,
+  "hueRotate": -22,
+  "sepia": 0.04,
+  "vignette": 0.28,
+  "promptHints": ["cool steel grade", "blue daylight", "crisp product still"],
+  "musicHints": ["clean pulse", "light percussion"]
+}

@@ -1,0 +1,16 @@
+{
+  "tempoBpm": 96,
+  "mood": "clean modern underscore under voiceover",
+  "genres": [
+    "lo-fi",
+    "ambient"
+  ],
+  "avoidVocals": true,
+  "energy": "medium",
+  "referenceNotes": "Stay under the voiceover; no lyric hooks.",
+  "negativeStyles": [
+    "vocals",
+    "lyrics",
+    "edm drop"
+  ]
+}

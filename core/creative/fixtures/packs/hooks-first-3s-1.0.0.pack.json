@@ -1,0 +1,17 @@
+{
+  "manifest": {
+    "id": "hooks-first-3s",
+    "slug": "hooks-first-3s",
+    "kind": "skill",
+    "semver": "1.0.0",
+    "mosApiVersion": 1,
+    "title": "Hooks first 3s",
+    "summary": "Earn attention in the first three seconds of ≤60s video.",
+    "entries": ["SKILL.md"],
+    "hintedTools": ["set_hook_title", "render_export"],
+    "requiresConfirmSpend": true
+  },
+  "files": {
+    "SKILL.md": "---\nname: hooks-first-3s\ndescription: Write and place hooks that earn attention in the first 3 seconds of ≤60s video. Use when drafting scripts, set_hook_title, or reviewing a talking-head/synthetic cut.\n---\n\n# Hooks in the first 3 seconds\n\n## Rules\n\n- The first line on screen or VO must state tension, outcome, or curiosity — not the brand name alone.\n- Prefer concrete verbs and audience pain from the Product context (e.g. Adobe headache, stuck on a document).\n- Hook title card ≤8 words when possible; support with spoken hook if VO exists.\n- Never lead with pricing unless the Brief is a price-led experiment.\n\n## Tool hints\n\n- Call `set_hook_title` before `render_export` for ad recipes.\n- If captions exist, ensure the first caption chunk matches the hook.\n- If near budget caps, improve hook on existing footage before spending on `generate_video_clip`.\n"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "warm-sun",
+  "label": "Warm sun",
+  "license": "first-party",
+  "contrast": 1.1,
+  "saturate": 1.28,
+  "hueRotate": 12,
+  "sepia": 0.22,
+  "vignette": 0.2,
+  "promptHints": ["late sun", "warm skin", "golden hour still"],
+  "musicHints": ["acoustic warmth", "soft guitar"]
+}

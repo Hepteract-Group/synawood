@@ -1,0 +1,56 @@
+name: mr-checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      MODEL_PROFILE: founder-edit
+      NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: public-anon-key-for-ci-build-only
+      SUPABASE_SERVICE_ROLE_KEY: service-role-key-for-ci-build-only
+      SUPABASE_PROJECT_REF: marketing-os-ci
+      EXPECTED_SUPABASE_PROJECT_REF: marketing-os-ci
+      AZURE_STORAGE_CONNECTION_STRING: DefaultEndpointsProtocol=https;AccountName=ci;AccountKey=Y2ljaw==;EndpointSuffix=core.windows.net
+      AZURE_STORAGE_CONTAINER: marketing-os
+      AZURE_BLOB_LOCAL_PREFIX: 'true'
+      POSTIZ_ADAPTER: mock
+      # Mock is CI-only. Do not set POSTIZ_API_KEY or POSTIZ_BASE_URL here.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run test
+      - name: Ad Generator coverage gate (≥90% lines / ≥75% branches)
+        run: npm run test:ad-generator:coverage
+      - name: Migration presence check
+        run: |
+          test -f supabase/migrations/0001_studio_core.sql
+          test -f supabase/migrations/0003_studio_chat.sql
+          test -f supabase/migrations/0004_grants.sql
+          test -f supabase/migrations/0005_generation_costs.sql
+          test -f supabase/migrations/0039_chat_threads.sql
+          test -f supabase/migrations/0040_asset_analyses.sql
+      - run: npm run build
+      - name: Secret scan (gitleaks)
+        env:
+          GITLEAKS_VERSION: 8.30.1
+        run: |
+          curl --fail --silent --show-error --location \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            | tar --extract --gzip --directory /usr/local/bin gitleaks
+          gitleaks git --redact --verbose
+      - name: Public-tree denylist / leak check (#904)
+        run: |
+          DEST="${RUNNER_TEMP}/oss-public-tree"
+          npx tsx scripts/oss-public-tree.ts --check --out "$DEST"
+          gitleaks dir "$DEST" --redact --verbose

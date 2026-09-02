@@ -1,0 +1,8 @@
+.agents/
+.cursor/
+node_modules/
+dashboard/.next/
+dist/
+coverage/
+*.md
+supabase/
